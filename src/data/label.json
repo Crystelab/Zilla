@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Label 1",
+        "colour": "blue"
+    },
+    {
+        "id": 2,
+        "name": "Label 2",
+        "colour": "green"
+    },
+    {
+        "id": 3,
+        "name": "Label 3",
+        "colour": "red"
+    },
+    {
+        "id": 4,
+        "name": "Label 4",
+        "colour": "pink"
+    }
+]
