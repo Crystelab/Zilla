@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 
 function Header() {
     return (
-       <div className="Header">
+       <div className="header">
          <h1 className="title" > Zilla </h1>
          <SearchBar></SearchBar>
          <ManageTeamButton></ManageTeamButton>

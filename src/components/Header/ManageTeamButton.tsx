@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { FaUsers } from 'react-icons/fa';
 
-function ManageTeamButton(){
-    return (
-        <button>
-          {}
-        </button>
-    );
+function ManageTeamButton() {
+  return (
+    <button>
+      <FaUsers size={30}/>
+    </button>
+  );
 };
 
 export default ManageTeamButton;
