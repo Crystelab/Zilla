@@ -1,14 +1,8 @@
 body {
   background-color: #282c34;
   color: white;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 25px;
-  background-color: rgb(20, 104, 104);
+  margin: 0;
+  padding: 0;
 }
 
 button {
@@ -27,4 +21,49 @@ input {
   font-family: sans-serif;
   font-size: 16px;
   width: 500px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: rgb(20, 104, 104);
+}
+
+/* Sidebar */
+.Sidebar {
+  height: 100vh;
+  width: 260px;
+  background-color: aqua;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.Sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Sidebar .row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.Sidebar .row:hover {
+  background-color: #3a3a3a;
+  transform: translateX(3px);
+}
+
+.Sidebar .row div {
+  font-size: 1rem;
 }

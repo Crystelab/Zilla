@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 function DarkModeButton() {
 
-    const [dark, setDark] = useState('Light');
+  const [isDark, setIsDark] = useState(false);
 
-    const handleClick = () => {
-        setDark(dark === 'Light'? 'Dark' : 'Light');
-    };
+  const handleClick = () => {
+    setIsDark(!isDark);
+  };
 
-    return (
-        <button onClick={handleClick}>{dark}</button>
-    );
-  }
+  return (
+    <button onClick={handleClick}>
+      {isDark ? <FaSun size={30}/> : <FaMoon size={30}/>}
+    </button>
+  );
+}
 
-  export default DarkModeButton;
+export default DarkModeButton;
