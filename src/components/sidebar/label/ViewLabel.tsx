@@ -1,4 +1,4 @@
-import { ILabel } from "../../types/label";
+import { ILabel } from "../../../types/label";
 
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   data: ILabel;
 };
 
-function LabelModal(props: Props) {
+function ViewLabel(props: Props) {
   const { closeBtn, data } = props;
 
   return (
@@ -15,7 +15,6 @@ function LabelModal(props: Props) {
         <span onClick={closeBtn}>
           &times;
         </span>
-        <h3></h3>
         <div>
           <div>
             <label>Id : {data.id}</label>
@@ -32,4 +31,4 @@ function LabelModal(props: Props) {
   );
 };
 
-  export default LabelModal;
+  export default ViewLabel;

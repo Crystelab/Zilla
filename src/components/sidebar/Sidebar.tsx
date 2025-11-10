@@ -2,13 +2,23 @@ import DarkModeButton from "./DarkModeButton";
 import labels from "../../data/label.json"
 import projects from "../../data/project.json"
 import { ILabel } from "../../types/label";
+import { FaPlus } from "react-icons/fa";
 
-function Sidebar({ onLabelClick }: { onLabelClick: (data: ILabel) => void }) {
+function Sidebar({
+  onLabelClick,
+  onAddLabelClick,
+}: {
+  onLabelClick: (data: ILabel) => void;
+  onAddLabelClick: () => void;
+}) {
 
   return (
     <div className="Sidebar">
       <DarkModeButton />
       <h3>Labels</h3>
+      <button onClick={() => onAddLabelClick()}>
+        <FaPlus size={30}/>
+      </button>
       <ul>
           {labels.map((val, key) => (
           <li 
