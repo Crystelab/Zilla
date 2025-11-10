@@ -67,3 +67,23 @@ input {
 .Sidebar .row div {
   font-size: 1rem;
 }
+
+/* pop-up */
+.pop-up{
+  background-color: white;
+  color: black;
+  position: absolute;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border: solid 5px black;
+}
+.pop-up span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.pop-up span:hover {
+  color: purple;
+}

@@ -1,14 +1,28 @@
 import './App.css';
-import Column from'./components/Column'
+import Column from './components/Column';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import { useState } from 'react';
+import LabelModal from './components/Sidebar/LabelModal';
+import { ILabel } from './types/label';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [dataToShow, setDataToShow] = useState<ILabel | null>(null);
+
+  const openModal = (data: ILabel) => {
+    setDataToShow(data);
+    setShowModal(true);
+    console.log(data.name)
+  };
+  const closeModal = () => setShowModal(false);
+
   return (
     <div className="App">
       <Header></Header>
-      <Sidebar></Sidebar>
+      <Sidebar onLabelClick={openModal} />
       <Column></Column>
+      {showModal && dataToShow !== null && ( <LabelModal closeBtn={closeModal} data={dataToShow} />)}
     </div>
   );
 }
