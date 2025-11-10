@@ -1,9 +1,9 @@
 import './App.css';
 import Column from './components/Column';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
+import Header from './components/header/Header';
+import Sidebar from './components/sidebar/Sidebar';
 import { useState } from 'react';
-import LabelModal from './components/Sidebar/LabelModal';
+import LabelModal from './components/sidebar/LabelModal';
 import { ILabel } from './types/label';
 
 function App() {
