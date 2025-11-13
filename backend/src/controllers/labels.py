@@ -38,3 +38,21 @@ def create_new_label(label: Label) -> Label:
     except Exception as e:
         print(f"Error writing labels: {e}")
         raise
+
+def update_label(label: Label) -> Label:
+    labels = get_all_labels()
+    
+    try:
+        # Loop through all labels and find the one with matching id
+        i = 0
+        for l in labels:
+            if l.id == label.id:
+                labels[i] = label
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump([label.dict() for label in labels], f, indent=2)
+                return l
+            i+=1
+    except Exception as e:
+        print(f"Error writing labels: {e}")
+        raise
+

@@ -1,17 +1,21 @@
 from fastapi import APIRouter
 from ..models.label import Label
-from ..controllers.labels import get_all_labels, get_one_label, create_new_label
+from ..controllers.labels import get_all_labels, get_one_label, create_new_label, update_label
 
 router = APIRouter(tags=["labels"])
 
 @router.get("/labels")
-async def get_labels():
+async def get_lall():
     return get_all_labels()
 
 @router.get("/labels/{id}")
-async def get_label(id: int):
+async def get_one(id: int):
     return get_one_label(id)
 
 @router.post("/labels")
-async def create_label(label: Label):
+async def create(label: Label):
     return create_new_label(label)
+
+@router.put("/items/{id}")
+async def update(label: Label):
+    return update_label(label)
