@@ -15,7 +15,7 @@ function Sidebar({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/labels")
+    fetch("http://localhost:8000/labels")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
