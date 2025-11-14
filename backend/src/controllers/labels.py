@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 from fastapi import HTTPException
 from typing import List
 from ..models.label import Label
@@ -27,9 +28,16 @@ def get_one_label(id: int) -> Label:
     
     raise HTTPException(status_code=404, detail=f"Label {id} not found")
 
-def create_new_label(label: Label) -> Label:
+def create_new_label(name: str, colour: str) -> Label:
     labels = get_all_labels()
+
+
+    id = str(uuid.uuid4())
+
+    label = Label(id=id, name=name, colour=colour)
     labels.append(label)
+
+    
     
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
@@ -72,4 +80,3 @@ def delete_label(id: int) -> dict:
     except Exception as e:
         print(f"Error writing labels: {e}")
         raise
-

@@ -42,6 +42,12 @@ Finally, run the backend server:
 uvicorn src.main:app --reload
 ```
 
+### Database
+Make sure you have docker installed. Then you can run this under administration:
+```
+docker-compose up -d postgres
+```
+
 ## Access Points
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000

@@ -1,37 +1,42 @@
 [
   {
-    "id": 2,
+    "id": "2",
     "name": "Test put",
     "colour": "aqua"
   },
   {
-    "id": 3,
+    "id": "3",
     "name": "Label 3",
     "colour": "red"
   },
   {
-    "id": 4,
+    "id": "4",
     "name": "Label 4",
     "colour": "pink"
   },
   {
-    "id": 10,
+    "id": "10",
     "name": "New label",
     "colour": "pink"
   },
   {
-    "id": 11,
+    "id": "11",
     "name": "string",
     "colour": "green"
   },
   {
-    "id": 0,
+    "id": "0",
     "name": "string",
     "colour": "string"
   },
   {
-    "id": 0,
+    "id": "0",
     "name": "string",
     "colour": "string"
+  },
+  {
+    "id": "f5bd2136-ae3f-4b78-b1cb-295dfa9298a0",
+    "name": "a",
+    "colour": "pink"
   }
 ]

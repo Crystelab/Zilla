@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 class Label(BaseModel):
-    id: int
+    id: str
     name: str
     colour: str
