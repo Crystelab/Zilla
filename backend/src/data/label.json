@@ -1,10 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Label 1",
-    "colour": "blue"
-  },
-  {
     "id": 2,
     "name": "Test put",
     "colour": "aqua"

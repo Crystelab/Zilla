@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from ..models.label import Label
-from ..controllers.labels import get_all_labels, get_one_label, create_new_label, update_label
+from ..controllers.labels import get_all_labels, get_one_label, create_new_label, update_label, delete_label
 
 router = APIRouter(tags=["labels"])
 
@@ -19,3 +19,7 @@ async def create(label: Label):
 @router.put("/items/{id}")
 async def update(label: Label):
     return update_label(label)
+
+@router.delete("/items/{id}")
+async def delete(id: int):
+    return delete_label(id)
