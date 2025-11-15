@@ -6,10 +6,6 @@ from typing import List
 from ..models.label import LabelDB, Label
 from sqlalchemy.orm import Session
 
-# File path for your JSON data
-file_path = os.path.join(os.path.dirname(__file__), '../data/label.json')
-
-
 def get_all_labels(db: Session) -> List[Label]:
     labels = db.query(LabelDB).all()
     return labels
@@ -27,8 +23,8 @@ def get_one_label(id: str, db: Session) -> Label:
     
     return label
 
-def create_new_label(name: str, colour: str, db: Session) -> Label:
-    db_label = LabelDB(name=name, colour=colour)
+def create_new_label(name: str, description: str, db: Session) -> Label:
+    db_label = LabelDB(name=name, description=description)
     
     db.add(db_label)
     db.commit()
@@ -38,7 +34,7 @@ def create_new_label(name: str, colour: str, db: Session) -> Label:
     label = Label(
         id=str(db_label.id),
         name=db_label.name,
-        colour=db_label.colour
+        description=db_label.description
     )
     
     return label
@@ -53,7 +49,7 @@ def update_label(label: Label, db: Session) -> Label:
             raise HTTPException(status_code=404, detail="Label not found")
         
         db_label.name = label.name
-        db_label.colour = label.colour
+        db_label.description = label.description
         
         db.commit()
         db.refresh(db_label)
@@ -61,7 +57,7 @@ def update_label(label: Label, db: Session) -> Label:
         return Label(
             id=str(db_label.id),
             name=db_label.name,
-            colour=db_label.colour
+            description=db_label.description
         )
         
     except ValueError:

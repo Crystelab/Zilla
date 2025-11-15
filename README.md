@@ -53,6 +53,10 @@ If it gives you an error try this command and then try the one above again:
 ```
 sudo systemctl stop postgresql
 ```
+To play around in the database, you can put in sql queries in after entering this:
+```
+psql -h localhost -U user -d zilla
+```
 
 ## Access Points
 - Frontend: http://localhost:3000

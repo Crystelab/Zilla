@@ -18,10 +18,10 @@ async def get_one(id: str, db: Session = Depends(get_db)):
 async def create(name: str, colour: str, db: Session = Depends(get_db)):
     return create_new_label(name, colour, db)
 
-@router.put("/items/{id}")
+@router.put("/labels/{id}")
 async def update(label: Label, db: Session = Depends(get_db)):
     return update_label(label,db)
 
-@router.delete("/items/{id}")
+@router.delete("/labels/{id}")
 async def delete(id: str, db: Session = Depends(get_db)):
     return delete_label(id, db)
