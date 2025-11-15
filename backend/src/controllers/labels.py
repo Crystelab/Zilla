@@ -3,80 +3,84 @@ import os
 import uuid
 from fastapi import HTTPException
 from typing import List
-from ..models.label import Label
+from ..models.label import LabelDB, Label
+from sqlalchemy.orm import Session
 
 # File path for your JSON data
 file_path = os.path.join(os.path.dirname(__file__), '../data/label.json')
 
 
-def get_all_labels() -> List[Label]:
+def get_all_labels(db: Session) -> List[Label]:
+    labels = db.query(LabelDB).all()
+    return labels
+
+def get_one_label(id: str, db: Session) -> Label:
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return [Label(**item) for item in data]
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"Error reading labels: {e}")
-        return []
-
-def get_one_label(id: int) -> Label:
-    labels = get_all_labels()
+        uuid_id = uuid.UUID(id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid ID format")
     
-    # Loop through all labels and find the one with matching id
-    for label in labels:
-        if label.id == id:
-            return label
+    label = db.query(LabelDB).filter(LabelDB.id == uuid_id).first()
     
-    raise HTTPException(status_code=404, detail=f"Label {id} not found")
-
-def create_new_label(name: str, colour: str) -> Label:
-    labels = get_all_labels()
-
-
-    id = str(uuid.uuid4())
-
-    label = Label(id=id, name=name, colour=colour)
-    labels.append(label)
-
+    if not label:
+        raise HTTPException(status_code=404, detail="Label not found")
     
+    return label
+
+def create_new_label(name: str, colour: str, db: Session) -> Label:
+    db_label = LabelDB(name=name, colour=colour)
     
+    db.add(db_label)
+    db.commit()
+    db.refresh(db_label)
+    
+    # Convert to Pydantic model for response
+    label = Label(
+        id=str(db_label.id),
+        name=db_label.name,
+        colour=db_label.colour
+    )
+    
+    return label
+
+def update_label(label: Label, db: Session) -> Label:
     try:
-        with open(file_path, 'w', encoding='utf-8') as f:
-            json.dump([label.dict() for label in labels], f, indent=2)
-        return label
-    except Exception as e:
-        print(f"Error writing labels: {e}")
-        raise
+        uuid_id = uuid.UUID(label.id)
+        
+        db_label = db.query(LabelDB).filter(LabelDB.id == uuid_id).first()
+        
+        if not db_label:
+            raise HTTPException(status_code=404, detail="Label not found")
+        
+        db_label.name = label.name
+        db_label.colour = label.colour
+        
+        db.commit()
+        db.refresh(db_label)
+        
+        return Label(
+            id=str(db_label.id),
+            name=db_label.name,
+            colour=db_label.colour
+        )
+        
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid ID format")
 
-def update_label(label: Label) -> Label:
-    labels = get_all_labels()
-    
+        
+def delete_label(id: str, db: Session) -> dict:
     try:
-        # Loop through all labels and find the one with matching id
-        i = 0
-        for l in labels:
-            if l.id == label.id:
-                labels[i] = label
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    json.dump([label.dict() for label in labels], f, indent=2)
-                return label
-            i+=1
-    except Exception as e:
-        print(f"Error writing labels: {e}")
-        raise
-
-def delete_label(id: int) -> dict:
-    labels = get_all_labels()
-    
-    try:
-        # Loop through all labels and find the one with matching id
-        i = 0
-        for l in labels:
-            if l.id == id:
-                labels.remove(l)
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    json.dump([l.dict() for l in labels], f, indent=2)
-                return {"message": f"Label {id} deleted successfully"}
-            i+=1
-    except Exception as e:
-        print(f"Error writing labels: {e}")
-        raise
+        uuid_id = uuid.UUID(id)
+        
+        db_label = db.query(LabelDB).filter(LabelDB.id == uuid_id).first()
+        
+        if not db_label:
+            raise HTTPException(status_code=404, detail="Label not found")
+        
+        db.delete(db_label)
+        db.commit()
+        
+        return {"message": f"Label {id} deleted successfully"}
+        
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid ID format")

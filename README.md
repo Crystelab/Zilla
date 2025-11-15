@@ -8,6 +8,8 @@ React.js seems like the best option for the front end of this app, because React
 
 FastAPI is definitely the fastest way to make an API and it automatically generates the Swagger documentation that I was looking for.
 
+PostgreSQL in Docker to make it easy for anyone to run it. The tables are automatically created when the backend starts up.
+
 ## Setup Guide
 ### Frontend
 
@@ -43,9 +45,13 @@ uvicorn src.main:app --reload
 ```
 
 ### Database
-Make sure you have docker installed. Then you can run this under administration:
+Make sure you have docker installed. Then you can run this under administration in a <b>different terminal</b>:
 ```
 docker-compose up -d postgres
+```
+If it gives you an error try this command and then try the one above again:
+```
+sudo systemctl stop postgresql
 ```
 
 ## Access Points
