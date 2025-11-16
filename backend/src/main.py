@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import labels, projects, columns, tasks
+from .routes import labels, projects, columns, tasks, tasklabels
 from .database import Base, engine
 
 Base.metadata.create_all(bind=engine)
@@ -18,6 +18,7 @@ app.include_router(labels.router)
 app.include_router(projects.router)
 app.include_router(columns.router)
 app.include_router(tasks.router)
+app.include_router(tasklabels.router)
 
 @app.get("/", tags=["health check"])
 def root():
