@@ -1,0 +1,42 @@
+@startuml
+hide methods
+hide stereotypes
+
+class Project << (T,#FFAAAA) >> {
+  + id : UUID
+  name : String
+  description : String
+}
+
+class Column << (T,#FFAAAA) >> {
+  + id : UUID  
+  name : String
+  project_id : UUID
+  position : Int
+}
+
+class Task << (T,#FFAAAA) >> {
+  + id : UUID
+  name : String
+  description : String
+  column_id : UUID
+  position : Int
+}
+
+class Label << (T,#FFAAAA) >> {
+  + id : UUID
+  name : String
+  colour : String
+}
+
+class TaskLabel << (T,#FFAAAA) >> {
+  task_id : UUID
+  label_id : UUID
+}
+
+Project "1" -- "*" Column
+Column "1" -- "*" Task  
+Task "1" -- "*" TaskLabel
+TaskLabel "*" -- "1" Label
+
+@enduml
