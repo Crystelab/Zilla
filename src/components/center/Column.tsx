@@ -16,22 +16,22 @@ function Column(props: Props) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    fetch(`http://localhost:8000/tasks/column/${column.id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data: ITask[]) => {
-        setTaks(data);
-        setLoading(false);
-      })
-      .catch((error: Error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+      fetch(`http://localhost:8000/tasks/column/${column.id}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data: ITask[]) => {
+          setTaks(data);
+          setLoading(false);
+        })
+        .catch((error: Error) => {
+          setError(error);
+          setLoading(false);
+        });
+    }, []);
 
   
     return (
@@ -40,9 +40,9 @@ function Column(props: Props) {
           <ul>
             {tasks.map((val) => (
             <li key={val.id}>
-              <TaskCard data={val}/>
+              <TaskCard task={val}/>
             </li>
-          ))}
+            ))}
           </ul>
       </div>
     );

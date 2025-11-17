@@ -3,6 +3,8 @@ from fastapi import HTTPException
 from typing import List
 from ..models.tasklabel import TaskLabelDB, TaskLabel
 from sqlalchemy.orm import Session
+from ..models.label import LabelDB, Label
+from sqlalchemy.orm import joinedload
 
 def add_label_to_task(task_id: str, label_id: str, db: Session) -> TaskLabel:
     # Convert strings to UUIDs
@@ -35,10 +37,22 @@ def remove_label_from_task(task_id: str, label_id: str, db: Session) -> dict:
     
     return {"message": f"Label {label_id} removed from task {task_id}"}
 
-def get_labels_for_task(task_id: str, db: Session) -> List[str]:
-    # This would return label IDs for a task
-    # You might want to join with Label table to get label names
+def get_labels_for_task(task_id: str, db: Session) -> List[Label]:
     task_uuid = uuid.UUID(task_id)
     
-    tasklabels = db.query(TaskLabelDB).filter(TaskLabelDB.task_id == task_uuid).all()
-    return [str(tl.label_id) for tl in tasklabels]
+    # Query with join to get full label objects
+    task_labels = db.query(LabelDB).join(
+        TaskLabelDB, LabelDB.id == TaskLabelDB.label_id
+    ).filter(
+        TaskLabelDB.task_id == task_uuid
+    ).all()
+    
+    # Convert to Pydantic models
+    return [
+        Label(
+            id=str(label.id),
+            name=label.name,
+            colour=label.colour
+        )
+        for label in task_labels
+    ]

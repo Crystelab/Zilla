@@ -6,14 +6,14 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(tags=["tasklabels"])
 
-@router.post("/tasks/{task_id}/labels/{label_id}")
+@router.post("/tasklabels/{task_id}/{label_id}")
 async def add_label(task_id: str, label_id: str, db: Session = Depends(get_db)):
     return add_label_to_task(task_id, label_id, db)
 
-@router.delete("/tasks/{task_id}/labels/{label_id}")
+@router.delete("/tasklabels/{task_id}/{label_id}")
 async def remove_label(task_id: str, label_id: str, db: Session = Depends(get_db)):
     return remove_label_from_task(task_id, label_id, db)
 
-@router.get("/tasks/{task_id}/labels")
+@router.get("/tasklabels/{task_id}")
 async def get_task_labels(task_id: str, db: Session = Depends(get_db)):
     return get_labels_for_task(task_id, db)
