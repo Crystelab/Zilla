@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from ..models.column import Column
-from ..controllers.columns import get_all_columns, get_one_column, create_new_column, update_column, delete_column
+from ..controllers.columns import get_all_columns, get_one_column, create_new_column, update_column, delete_column, get_project_columns
 from ..database import get_db
 from sqlalchemy.orm import Session
 
@@ -25,3 +25,7 @@ async def update(column: Column, db: Session = Depends(get_db)):
 @router.delete("/columns/{id}")
 async def delete(id: str, db: Session = Depends(get_db)):
     return delete_column(id, db)
+
+@router.get("/columns/project/{project_id}")
+async def get_by_project(project_id: str, db: Session = Depends(get_db)):
+    return get_project_columns(project_id, db)

@@ -85,3 +85,13 @@ def delete_task(id: str, db: Session) -> dict:
         
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid ID format")
+
+def get_column_tasks(column_id: str, db: Session) -> List[Task]:
+    try:
+        uuid_column_id = uuid.UUID(column_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid column ID format")
+    
+    tasks = db.query(TaskDB).filter(TaskDB.column_id == uuid_column_id).all()
+    
+    return tasks

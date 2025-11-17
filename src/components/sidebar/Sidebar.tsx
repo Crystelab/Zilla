@@ -1,16 +1,20 @@
 import DarkModeButton from "./DarkModeButton";
 import { ILabel } from "../../types/label";
+import { IProject } from "../../types/project";
 import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 function Sidebar({
   onLabelClick,
   onAddLabelClick,
+  onProjectClick
 }: {
   onLabelClick: (d: ILabel) => void;
   onAddLabelClick: () => void;
+  onProjectClick: (d: IProject) => void;
 }) {
   const [labels, setLabels] = useState<ILabel[]>([]);
+  const [projects, setProjects] = useState<IProject[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +28,22 @@ function Sidebar({
       })
       .then((data: ILabel[]) => {
         setLabels(data);
+        setLoading(false);
+      })
+      .catch((error: Error) => {
+        setError(error);
+        setLoading(false);
+      });
+
+      fetch("http://localhost:8000/projects")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data: IProject[]) => {
+        setProjects(data);
         setLoading(false);
       })
       .catch((error: Error) => {
@@ -57,10 +77,11 @@ function Sidebar({
 
       <h3>Projects</h3>
       <ul>
-        {labels.map((val) => (
+        {projects.map((val) => (
           <li 
           key={val.id} 
           className="row"
+          onClick={() => onProjectClick(val)}
           >
             <div>{val.name}</div>
           </li>

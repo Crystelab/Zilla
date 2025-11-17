@@ -10,7 +10,7 @@ type Props = {
 function AddLabel(props: Props) {
   const { closeBtn, submitHandler } = props;
 
-  const [id, setId] = useState(0);
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [colour, setColour] = useState("");
 

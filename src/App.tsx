@@ -1,43 +1,25 @@
 import './App.css';
-import Column from './components/Column';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import { useState } from 'react';
 import ViewLabel from './components/sidebar/label/ViewLabel';
 import { ILabel } from './types/label';
 import AddLabel from './components/sidebar/label/AddLabel';
+import useLabels from './hooks/useLabels';
+import useProject from './hooks/useProject';
+import Project from './components/center/Project';
 
 function App() {
-  const [showLabel, setShowLabel] = useState(false);
-  const [dataToShow, setDataToShow] = useState<ILabel | null>(null);
   
-  const [showAddLabel, setShowAddLabel] = useState(false);
-
-  const openLabel = (data: ILabel) => {
-    setDataToShow(data);
-    setShowLabel(true);
-    console.log(data.name)
-  };
-
-  const openAddLabel = () => setShowAddLabel(true);
-
-
-  const handleAddLabel = (data: ILabel) => {
-    console.log("New label:", data);
-
-    // here you can push it to state, API, etc.
-  };
-  const closeLabel = () => {
-    setShowLabel(false);
-    setShowAddLabel(false);
-  };
+  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, handleAddLabel, openAddLabel } = useLabels();
+  const { showProject, dataProject,showAddProject, openProject, closeProject } = useProject();
 
   return (
     <div className="App">
       <Header></Header>
-      <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel}/>
-      <Column></Column>
-      {showLabel && dataToShow !== null && ( <ViewLabel closeBtn={closeLabel} data={dataToShow} />)}
+      <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel} onProjectClick={openProject}/>
+      {showProject && dataProject !== null && ( <Project data={dataProject}></Project>)}
+      {showLabel && dataLabel !== null && ( <ViewLabel closeBtn={closeLabel} data={dataLabel} />)}
       {showAddLabel && <AddLabel closeBtn={closeLabel} submitHandler={handleAddLabel} />}
     </div>
   );

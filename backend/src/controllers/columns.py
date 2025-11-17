@@ -82,3 +82,13 @@ def delete_column(id: str, db: Session) -> dict:
         
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid ID format")
+
+def get_project_columns(project_id: str, db: Session) -> List[Column]:
+    try:
+        uuid_project_id = uuid.UUID(project_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid project ID format")
+    
+    columns = db.query(ColumnDB).filter(ColumnDB.project_id == uuid_project_id).all()
+    
+    return columns

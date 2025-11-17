@@ -38,7 +38,6 @@ Once activated, you can install all requirements.
 ```
 pip install -r requirements.txt
 ```
-
 Finally, run the backend server:
 ```
 uvicorn src.main:app --reload
@@ -49,9 +48,9 @@ Make sure you have docker installed. Then you can run this under administration 
 ```
 docker-compose up -d postgres
 ```
-If it gives you an error try this command and then try the one above again:
+If it gives you an error try this command, also under administration (sudo on linux), and then try the one above again:
 ```
-sudo systemctl stop postgresql
+systemctl stop postgresql
 ```
 To play around in the database, you can put in sql queries in after entering this, the password for user is password:
 ```
