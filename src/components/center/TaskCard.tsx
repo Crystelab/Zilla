@@ -32,8 +32,6 @@ function TaskCard(props: Props) {
         });
     }, []);
 
-    console.log("HIIIII"+ labels)
-
     return (
       <div className="TaskCard">
         <h3>{task.name}</h3>

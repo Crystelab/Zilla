@@ -17,14 +17,12 @@ const useLabel = (): {
     const openLabel = (data: ILabel) => {
     setdataLabel(data);
     setShowLabel(true);
-    console.log(data.name)
     };
 
     const openAddLabel = () => setShowAddLabel(true);
 
 
     const handleAddLabel = (data: ILabel) => {
-    console.log("New label:", data);
 
     // here you can push it to state, API, etc.
     };

@@ -16,14 +16,12 @@ const useProject = (): {
     const openProject = (data: IProject) => {
     setdataProject(data);
     setShowProject(true);
-    console.log(data.name)
     };
 
     const openAddProject = () => setShowAddProject(true);
 
 
     const handleAddProject = (data: IProject) => {
-    console.log("New project:", data);
 
     // here you can push it to state, API, etc.
     };
