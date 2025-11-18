@@ -10,15 +10,17 @@ import useProject from './hooks/useProject';
 import Project from './components/center/Project';
 
 function App() {
-  
+
   const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, handleAddLabel, openAddLabel } = useLabels();
-  const { showProject, dataProject,showAddProject, openProject, closeProject } = useProject();
+  const { showProject, dataProject, showAddProject, openProject, closeProject } = useProject();
 
   return (
     <div className="App">
       <Header></Header>
-      <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel} onProjectClick={openProject}/>
-      {showProject && dataProject !== null && ( <Project data={dataProject}></Project>)}
+      <div className="main-container">
+        <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel} onProjectClick={openProject}/>
+        {showProject && dataProject !== null && ( <Project data={dataProject}></Project>)}
+      </div>
       {showLabel && dataLabel !== null && ( <ViewLabel closeBtn={closeLabel} data={dataLabel} />)}
       {showAddLabel && <AddLabel closeBtn={closeLabel} submitHandler={handleAddLabel} />}
     </div>

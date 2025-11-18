@@ -5,6 +5,14 @@ body {
   padding: 0;
 }
 
+.App {
+  flex-direction: column;
+}
+
+.main-container {
+  display: flex;
+}
+
 button {
   background-color: lightblue;
   color: darkslateblue;
@@ -86,4 +94,12 @@ input {
 }
 .pop-up span:hover {
   color: purple;
+}
+
+/* Project */
+.Project {
+  flex: 1;
+  background-color: bisque;
+  color: black;
+  overflow: auto;
 }
