@@ -9,9 +9,8 @@ function ProjectHeader(props: Props) {
   const { data } = props;
     return (
        <div className="ProjectHeader">
-        <ProjectSettingsButton/>
         <h1>{data.name}</h1>
-        <p>{data.description}</p>
+        <ProjectSettingsButton/>
       </div>
     );
   }

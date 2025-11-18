@@ -103,3 +103,18 @@ input {
   color: black;
   overflow: auto;
 }
+
+.ProjectHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.ProjectHeader h1 {
+  flex: 1;
+  text-align: center;
+  margin: 10;
+}
