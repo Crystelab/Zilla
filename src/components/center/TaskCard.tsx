@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ITask } from "../../types/task";
 import { ILabel } from "../../types/label";
+import LabelCard from "./labelCard";
 
 type Props = {
   task: ITask;
@@ -34,14 +35,14 @@ function TaskCard(props: Props) {
 
     return (
       <div className="TaskCard">
-        <h3>{task.name}</h3>
         <ul>
           {labels.map((val) => (
             <li key={val.id}>
-              <h4>{val.name}</h4>
+              <LabelCard label={val}/>
             </li>
             ))}
         </ul>
+        <h3>{task.name}</h3>
       </div>
     );
   }
