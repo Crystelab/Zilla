@@ -42,9 +42,9 @@ function Columns(props: Props) {
 
   return (
     <div className="Columns">
-      <ul>
+      <ul className="ulColumns">
         {columns.map((val) => (
-          <li key={val.id}>
+          <li key={val.id} className="liColumns">
             <Column column={val}/>
           </li>
         ))}
