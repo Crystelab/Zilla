@@ -1,6 +1,6 @@
 # Zilla
 
-This app is a Kanban board that is still a work in progress. The goal for now is for a single user to be able to manage several projects, each with their own tasks and columns.
+This web app is a Kanban board that is still a work in progress. The goal for now is for a single user to be able to manage several projects, each with their own tasks and columns.
 
 ## Stack
 
