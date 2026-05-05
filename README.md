@@ -21,6 +21,22 @@ Then you can run the UI with:
 ```
 npm start
 ```
+
+### Database
+Make sure you have docker installed. Then you can run this under administration (sudo on linux) in a <b>different terminal</b>:
+```
+docker-compose up -d postgres
+```
+If it gives you an error try this command, also under administration (sudo on linux), and then try the one above again:
+```
+systemctl stop postgresql
+```
+To play around in the database, you can put in sql queries in after entering this, the password for user is password:
+```
+psql -h localhost -U user -d zilla
+```
+
+
 ### Backend
 To run the backend, in a <b>different terminal</b> go to the backend folder:
 ```
@@ -41,20 +57,6 @@ pip install -r requirements.txt
 Finally, run the backend server:
 ```
 uvicorn src.main:app --reload
-```
-
-### Database
-Make sure you have docker installed. Then you can run this under administration (sudo on linux) in a <b>different terminal</b>:
-```
-docker-compose up -d postgres
-```
-If it gives you an error try this command, also under administration (sudo on linux), and then try the one above again:
-```
-systemctl stop postgresql
-```
-To play around in the database, you can put in sql queries in after entering this, the password for user is password:
-```
-psql -h localhost -U user -d zilla
 ```
 
 ## Access Points

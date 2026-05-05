@@ -11,7 +11,7 @@ import Project from './components/center/Project';
 
 function App() {
 
-  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, handleAddLabel, openAddLabel } = useLabels();
+  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, createLabel, openAddLabel } = useLabels();
   const { showProject, dataProject, showAddProject, openProject, closeProject } = useProject();
 
   return (
@@ -22,7 +22,7 @@ function App() {
         {showProject && dataProject !== null && ( <Project data={dataProject}></Project>)}
       </div>
       {showLabel && dataLabel !== null && ( <ViewLabel closeBtn={closeLabel} data={dataLabel} />)}
-      {showAddLabel && <AddLabel closeBtn={closeLabel} submitHandler={handleAddLabel} />}
+      {showAddLabel && <AddLabel closeBtn={closeLabel} newLabel={createLabel} />}
     </div>
   );
 }

@@ -4,19 +4,14 @@ import { ILabel } from "../../../types/label";
 
 type Props = {
   closeBtn: () => void;
-  submitHandler: (data: ILabel) => void;
+  newLabel: any;
 };
 
 function AddLabel(props: Props) {
-  const { closeBtn, submitHandler } = props;
+  const { closeBtn, newLabel } = props;
 
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [colour, setColour] = useState("");
-
-  const idHandler = (e: any) => {
-    setId(e.target.value);
-  };
 
   const nameHandler = (e: any) => {
     setName(e.target.value);
@@ -28,12 +23,7 @@ function AddLabel(props: Props) {
 
   const submitBtnHandler = (e: any) => {
     e.preventDefault();
-    const data: ILabel = {
-      id: id,
-      name: name,
-      colour: colour,
-    };
-    submitHandler(data);
+    newLabel(name, colour);
   };
 
 
@@ -44,15 +34,6 @@ function AddLabel(props: Props) {
           &times;
         </span>
        <form onSubmit={submitBtnHandler}>
-            <div>
-            <label>Id : </label>
-            <input
-                type="text"
-                placeholder="Id"
-                value={id}
-                onChange={idHandler}
-            />
-            </div>
             <div>
             <label>Name : </label>
             <input

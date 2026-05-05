@@ -38,7 +38,6 @@ function TaskCard(props: Props) {
         <ul>
           {labels.map((val) => (
             <li key={val.id}>
-              <LabelCard label={val}/>
             </li>
             ))}
         </ul>

@@ -17,9 +17,6 @@ function ViewLabel(props: Props) {
         </span>
         <div>
           <div>
-            <label>Id : {data.id}</label>
-          </div>
-          <div>
             <label>Name : {data.name}</label>
           </div>
           <div>
