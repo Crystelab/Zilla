@@ -3,18 +3,14 @@ import { ILabel } from "../../types/label";
 import { IProject } from "../../types/project";
 import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { useLabelContext } from '../../contexts/LabelContext';
 
 function Sidebar({
-  onLabelClick,
-  onAddLabelClick,
   onProjectClick,
-  refetchLabels
 }: {
-  onLabelClick: (d: ILabel) => void;
-  onAddLabelClick: () => void;
   onProjectClick: (d: IProject) => void;
-  refetchLabels: boolean;
 }) {
+  const { openLabel, openAddLabel, refetchLabels } = useLabelContext();
   const [labels, setLabels] = useState<ILabel[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
   const [error, setError] = useState<Error | null>(null);
@@ -47,7 +43,7 @@ useEffect(() => {
     <div className="Sidebar">
       <DarkModeButton />
       <h3>Labels</h3>
-      <button onClick={() => onAddLabelClick()}>
+      <button onClick={() => openAddLabel()}>
         <FaPlus size={30}/>
       </button>
       
@@ -56,7 +52,7 @@ useEffect(() => {
           <li
             key={val.id}
             className="row"
-            onClick={() => onLabelClick(val)}
+            onClick={() => openLabel(val)}
           >
             <div>{val.name}</div>
           </li>
