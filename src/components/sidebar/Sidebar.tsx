@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 function Sidebar({
   onLabelClick,
   onAddLabelClick,
-  onProjectClick
+  onProjectClick,
+  refetchSidebar
 }: {
   onLabelClick: (d: ILabel) => void;
   onAddLabelClick: () => void;
   onProjectClick: (d: IProject) => void;
+  refetchSidebar: boolean;
 }) {
   const [labels, setLabels] = useState<ILabel[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
@@ -50,7 +52,7 @@ function Sidebar({
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [refetchSidebar]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

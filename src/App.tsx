@@ -11,14 +11,14 @@ import Project from './components/center/Project';
 
 function App() {
 
-  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, createLabel, openAddLabel } = useLabels();
+  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, createLabel, openAddLabel, refetchSidebar } = useLabels();
   const { showProject, dataProject, showAddProject, openProject, closeProject } = useProject();
 
   return (
     <div className="App">
       <Header></Header>
       <div className="main-container">
-        <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel} onProjectClick={openProject}/>
+        <Sidebar onLabelClick={openLabel} onAddLabelClick={openAddLabel} onProjectClick={openProject} refetchSidebar={refetchSidebar}/>
         {showProject && dataProject !== null && ( <Project data={dataProject}></Project>)}
       </div>
       {showLabel && dataLabel !== null && ( <ViewLabel closeBtn={closeLabel} data={dataLabel} />)}
