@@ -8,12 +8,12 @@ function Sidebar({
   onLabelClick,
   onAddLabelClick,
   onProjectClick,
-  refetchSidebar
+  refetchLabels
 }: {
   onLabelClick: (d: ILabel) => void;
   onAddLabelClick: () => void;
   onProjectClick: (d: IProject) => void;
-  refetchSidebar: boolean;
+  refetchLabels: boolean;
 }) {
   const [labels, setLabels] = useState<ILabel[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
@@ -23,36 +23,22 @@ function Sidebar({
   useEffect(() => {
     fetch("http://localhost:8000/labels")
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
       })
-      .then((data: ILabel[]) => {
-        setLabels(data);
-        setLoading(false);
-      })
-      .catch((error: Error) => {
-        setError(error);
-        setLoading(false);
-      });
+      .then((data: ILabel[]) => { setLabels(data); setLoading(false); })
+      .catch((error: Error) => { setError(error); setLoading(false); });
+  }, [refetchLabels]);
 
-      fetch("http://localhost:8000/projects")
+useEffect(() => {
+    fetch("http://localhost:8000/projects")
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
       })
-      .then((data: IProject[]) => {
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((error: Error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [refetchSidebar]);
+      .then((data: IProject[]) => { setProjects(data); setLoading(false); })
+      .catch((error: Error) => { setError(error); setLoading(false); });
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
