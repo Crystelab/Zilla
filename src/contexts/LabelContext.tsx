@@ -1,5 +1,4 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { ILabel } from '../types/label';
 import ViewLabel from '../components/sidebar/label/ViewLabel';
 import AddLabel from '../components/sidebar/label/AddLabel';
 import useLabels from '../hooks/useLabels';

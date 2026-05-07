@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ILabel } from "../../../types/label";
 
 
 type Props = {

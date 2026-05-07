@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ITask } from "../../types/task";
 import { ILabel } from "../../types/label";
-import LabelCard from "./labelCard";
 
 type Props = {
   task: ITask;
