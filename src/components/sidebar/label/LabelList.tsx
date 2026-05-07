@@ -31,5 +31,5 @@ export const LabelList = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}

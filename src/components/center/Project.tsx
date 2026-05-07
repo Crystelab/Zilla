@@ -1,7 +1,6 @@
 import { IProject } from "../../types/project";
 import Columns from "./Columns";
 import ProjectHeader from "./ProjectHeader";
-import ProjectSettingsButton from "./ProjectSettingsButton";
 
 type Props = {
   data: IProject;

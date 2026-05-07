@@ -23,7 +23,6 @@ const useProject = (): {
 
     const handleAddProject = (data: IProject) => {
 
-    // here you can push it to state, API, etc.
     };
     const closeProject = () => {
     setShowProject(false);
