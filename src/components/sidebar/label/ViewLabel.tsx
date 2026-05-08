@@ -1,17 +1,22 @@
 import { ILabel } from "../../../types/label";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 
 type Props = {
   closeBtn: () => void;
+  deleteBtn: (data: ILabel) => void;
   data: ILabel;
 };
 
 function ViewLabel(props: Props) {
-  const { closeBtn, data } = props;
+  const { closeBtn, deleteBtn, data } = props;
 
   return (
     <div>
       <div className="pop-up" style={{backgroundColor: data.colour}}>
+        <button onClick={() => deleteBtn(data)}>
+           <FaRegTrashCan size={30}/>
+        </button >
         <span onClick={closeBtn}>
           &times;
         </span>

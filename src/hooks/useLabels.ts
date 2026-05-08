@@ -7,6 +7,7 @@ const useLabel = (): {
     showAddLabel: boolean;
     openLabel: (data: ILabel) => void;
     closeLabel: () => void;
+    deleteLabel: (data: ILabel) => void;
     createLabel: any;
     openAddLabel: () => void;
     refetchLabels: boolean;
@@ -37,8 +38,17 @@ const useLabel = (): {
         setShowLabel(false);
         setShowAddLabel(false);
     };
+
+    const deleteLabel = async(data: ILabel) =>{
+        const response = await fetch(
+            `http://localhost:8000/labels/${data.id}`,
+            {method: "DELETE"}
+        );
+        setrefetchLabels(prev => !prev);
+        closeLabel();
+    }
     
-    return { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, createLabel, openAddLabel, refetchLabels };
+    return { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, deleteLabel, createLabel, openAddLabel, refetchLabels };
 }
 
 export default useLabel;

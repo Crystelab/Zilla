@@ -6,13 +6,13 @@ import useLabels from '../hooks/useLabels';
 const LabelContext = createContext({} as any);
 
 export const LabelProvider = ({ children }: { children: ReactNode }) => {
-  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, createLabel, openAddLabel, refetchLabels } = useLabels();
+  const { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, deleteLabel, createLabel, openAddLabel, refetchLabels } = useLabels();
 
 
   return (
     <LabelContext.Provider value={{ openLabel, openAddLabel, refetchLabels, closeLabel }}>
       {children}
-      {showLabel && dataLabel && <ViewLabel closeBtn={closeLabel} data={dataLabel} />}
+      {showLabel && dataLabel && <ViewLabel closeBtn={closeLabel} deleteBtn={deleteLabel} data={dataLabel} />}
       {showAddLabel && <AddLabel closeBtn={closeLabel} newLabel={createLabel} />}
     </LabelContext.Provider>
   );
