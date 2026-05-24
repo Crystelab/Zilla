@@ -9,6 +9,7 @@ const useLabel = (): {
     closeLabel: () => void;
     deleteLabel: (data: ILabel) => void;
     createLabel: any;
+    modifyLabel: (data: ILabel) => void;
     openAddLabel: () => void;
     refetchLabels: boolean;
 } => {
@@ -34,6 +35,19 @@ const useLabel = (): {
         closeLabel();
     };
 
+    const modifyLabel = async (data: ILabel) => {
+        const response = await fetch(
+            `http://localhost:8000/labels/${data.id}`,
+            { 
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: data.id, name: data.name, colour: data.colour })
+            }
+        );
+        setrefetchLabels(prev => !prev);
+        closeLabel();
+    };
+
     const closeLabel = () => {
         setShowLabel(false);
         setShowAddLabel(false);
@@ -48,7 +62,7 @@ const useLabel = (): {
         closeLabel();
     }
     
-    return { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, deleteLabel, createLabel, openAddLabel, refetchLabels };
+    return { showLabel, dataLabel, showAddLabel, openLabel, closeLabel, deleteLabel, createLabel, modifyLabel, openAddLabel, refetchLabels };
 }
 
 export default useLabel;
