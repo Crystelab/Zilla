@@ -30,7 +30,7 @@ function Columns(props: Props) {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [project.id]);
 
   if (loading) {
     return <div>Loading columns...</div>;

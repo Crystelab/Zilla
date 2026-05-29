@@ -3,15 +3,15 @@ import Columns from "./Columns";
 import ProjectHeader from "./ProjectHeader";
 
 type Props = {
-  data: IProject;
+  project: IProject;
 };
 
 function Project(props: Props) {
-  const { data } = props;
+  const {project} = props;
     return (
        <div className="Project">
-        <ProjectHeader data={data}/>
-        <Columns project={data}></Columns>
+        <ProjectHeader data={project}/>
+        <Columns project={project}></Columns>
       </div>
     );
   }

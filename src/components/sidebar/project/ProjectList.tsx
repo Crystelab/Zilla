@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { IProject } from "../../../types/project";
 import { useProjectContext } from "../../../contexts/ProjectContext";
 
-export const ProjectList = ({ onProjectClick }: { onProjectClick: (project: IProject) => void }) => {
-    const { openProject } = useProjectContext();
+export const ProjectList = () => {
+    const { openProject, refetchProject } = useProjectContext();
     const [projects, setProjects] = useState<IProject[]>([]);
 
     useEffect(() => {
         fetch("http://localhost:8000/projects")
         .then(res => res.json())
         .then(setProjects);
-    }, []);
+    }, [refetchProject]);
 
     return(
         <div className="Sidebar">
@@ -20,7 +20,7 @@ export const ProjectList = ({ onProjectClick }: { onProjectClick: (project: IPro
                 <li 
                 key={val.id} 
                 className="row"
-                onClick={() => onProjectClick(val)}
+                onClick={() => openProject(val)}
                 >
                     <div>{val.name}</div>
                 </li>

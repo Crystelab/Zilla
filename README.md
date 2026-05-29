@@ -23,6 +23,7 @@ npm start
 ```
 
 ### Database
+To run the database, in a <b>different terminal</b>:
 Make sure you have docker installed. Then you can run this under administration (sudo on linux) in a <b>different terminal</b>:
 ```
 docker-compose up -d postgres

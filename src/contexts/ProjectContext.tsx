@@ -5,12 +5,12 @@ import Project from '../components/center/Project';
 const ProjectContext = createContext({} as any);
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
-  const { showProject, dataProject, openProject, closeProject } = useProject();
+  const { showProject, dataProject, openProject, refetchProject } = useProject();
 
   return (
-    <ProjectContext.Provider value={{ openProject }}>
+    <ProjectContext.Provider value={{ openProject, refetchProject, showProject, dataProject }}>
       {children}
-      {showProject && dataProject && <Project data={dataProject} />}
+      {showProject && dataProject && <Project project={dataProject} />}
     </ProjectContext.Provider>
   );
 };
