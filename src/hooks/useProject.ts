@@ -7,6 +7,8 @@ const useProject = (): {
     showAddProject: boolean;
     openProject: (data: IProject) => void;
     closeProject: () => void;
+    createProject : any;
+    openAddProject: () => void;
     refetchProject: boolean;
 } => {
 
@@ -21,12 +23,23 @@ const useProject = (): {
     setrefetchProject(prev => !prev);
     };
 
+    const openAddProject = () => setShowAddProject(true);
+
+    const createProject = async (name: string, description: string) => {
+        const response = await fetch(
+            `http://localhost:8000/projects?name=${name}&description=${description}`,
+            { method: "POST" }
+        );
+        setrefetchProject(prev => !prev);
+        closeProject();
+    };
+
     const closeProject = () => {
     setShowProject(false);
     setShowAddProject(false);
     };
 
-    return {showProject, dataProject,showAddProject, openProject, closeProject, refetchProject}
+    return {showProject, dataProject,showAddProject, openProject, closeProject, openAddProject, createProject, refetchProject}
 }
 
 export default useProject;

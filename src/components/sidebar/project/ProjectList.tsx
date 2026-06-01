@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { IProject } from "../../../types/project";
 import { useProjectContext } from "../../../contexts/ProjectContext";
+import { FaPlus } from "react-icons/fa";
 
 export const ProjectList = () => {
-    const { openProject, refetchProject } = useProjectContext();
+    const { openProject, openAddProject, refetchProject } = useProjectContext();
     const [projects, setProjects] = useState<IProject[]>([]);
 
     useEffect(() => {
@@ -15,6 +16,9 @@ export const ProjectList = () => {
     return(
         <div className="Sidebar">
             <h3>Projects</h3>
+            <button onClick={() => openAddProject()}>
+                <FaPlus size={30}/>
+            </button>
             <ul>
                 {projects.map((val) => (
                 <li 
