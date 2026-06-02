@@ -10,7 +10,7 @@ function Project(props: Props) {
   const {project} = props;
     return (
        <div className="Project">
-        <ProjectHeader data={project}/>
+        <ProjectHeader project={project}/>
         <Columns project={project}></Columns>
       </div>
     );

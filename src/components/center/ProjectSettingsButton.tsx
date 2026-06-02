@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { FaCog } from "react-icons/fa";
+import { useProjectContext } from "../../contexts/ProjectContext";import { IProject } from "../../types/project";
 
-function ProjectSettingsButton() {
+type Props = {
+  project: IProject;
+};
 
-  const handleClick = () => {
-  };
 
+function ProjectSettingsButton(props: Props) {
+const { openProjectSettings } = useProjectContext();
   return (
-    <button onClick={handleClick}>
+    <button onClick={() => openProjectSettings(true)}>
       <FaCog size={30}/>
     </button>
   );
